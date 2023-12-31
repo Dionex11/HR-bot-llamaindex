@@ -1,2 +1,2 @@
-key="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"
+key="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"
 path="C:\\Users\\bmw\\PycharmProjects\\index_brillio\\uni-formatted.csv"

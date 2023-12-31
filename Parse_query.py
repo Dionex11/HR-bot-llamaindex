@@ -13,6 +13,7 @@ def prompt_parser(query):
     role : contains role of an employee,
     skill : contains different skillset of an employee,
     location: Contains addresses.
+    example: if i ask you a question: number of employees in diffrent locations. you have to return both number and lame of locations 
     {}
     """.format(query)
     return prompt

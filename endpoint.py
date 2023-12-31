@@ -27,7 +27,24 @@ def keyword_finder(query):
 
 def output_formatter(ans_dict, key, response):
     if isinstance(response, pd.core.series.Series):
-        ans_dict["answer"].append(response)
+        columns_list=[]
+        i=response.index.to_list()
+        response.to_dict()
+        columns_list.append(response.index.name)
+        columns_list.append(response.name)
+        d=response.to_list()
+        c = [[x,y] for x, y in zip(i, d)]
+        if key == 0:
+            key = "answer"
+            ans_dict["answer"] = {}
+            ans_dict[key]["columns"] = columns_list
+            ans_dict[key]["data"] = d
+        else:
+            print(ans_dict)
+            ans_dict[key]["answer"] = {}
+            k="answer"
+            ans_dict[key][k]["columns"] = columns_list
+            ans_dict[key][k]["data"] = c
         return ans_dict
     elif isinstance(response, pd.core.frame.DataFrame):
         c = response.columns
@@ -41,8 +58,9 @@ def output_formatter(ans_dict, key, response):
             ans_dict[key]["columns"] = columns_list
             ans_dict[key]["data"] = d
         else:
-            ans_dict[key]["columns"] = columns_list
-            ans_dict[key]["data"] = d
+            ans_dict[key]["answer"]={}
+            ans_dict[key]["answer"]["columns"] = columns_list
+            ans_dict[key]["answer"]["data"] = d
         return ans_dict
     else:
         ans_dict["answer"] = response
